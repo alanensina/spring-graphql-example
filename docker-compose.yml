@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+
+  bookstore-postgres:
+    image: postgres:14.2
+    container_name: postgres-database
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: user
+      POSTGRES_DB: bookstore
+    ports:
+      - "5432:5432"
+    networks:
+      - database-network
+
+networks:
+  database-network:
