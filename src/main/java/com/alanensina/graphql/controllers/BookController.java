@@ -2,6 +2,7 @@ package com.alanensina.graphql.controllers;
 
 import com.alanensina.graphql.dtos.BookDTO;
 import com.alanensina.graphql.services.BookService;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class BookController {
         this.bookService = bookService;
     }
 
+    @QueryMapping
     public List<BookDTO> books(){
         return bookService.listAll();
     }
