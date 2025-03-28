@@ -2,18 +2,19 @@ package com.alanensina.graphql.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
-public class Book {
+public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private Integer pageCount;
+    private String country;
 
-    @ManyToOne
-    @JoinColumn(name = "author_id", nullable = false)
-    private Author author;
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Book> books;
 
     public Integer getId() {
         return id;
@@ -31,19 +32,19 @@ public class Book {
         this.name = name;
     }
 
-    public Integer getPageCount() {
-        return pageCount;
+    public String getCountry() {
+        return country;
     }
 
-    public void setPageCount(Integer pageCount) {
-        this.pageCount = pageCount;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
-    public Author getAuthor() {
-        return author;
+    public List<Book> getBooks() {
+        return books;
     }
 
-    public void setAuthor(Author author) {
-        this.author = author;
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 }
